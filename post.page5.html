@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Page</title>
+    <!--Link To CSS-->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Box Icons -->
+    <link href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet">
+    <style>
+        /*Google fonts */
+    @import url('https://fonts.googleapis.com/css2family=Poppins:wght@400;500;600;700&display=swop');
+    *{
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+      scroll-padding-top: 2rem;
+      box-sizing: border-box;
+    }
+    
+    /* Variables */
+    :root {
+        --container-color:#1a1e21;
+        --second-color:#fd8f44;
+        --text-color:#172317;
+        --bg-color:#fff;
+    }
+    a{
+      text-decoration: none;
+    }
+    li {
+      list-style: none;
+    }
+    img{
+      width: 100%;
+    }
+    section{
+        padding: 3rem 0 2rem;
+    }
+    .container{
+        max-width: 1068;
+        margin: auto;
+        width: 100%;
+    }    
+    /* Header */
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 100;
+    }
+    header.shadow {
+     background: var(--bg-color);
+     box-shadow:0 1px 4px hsl(0 4% 14% / 10%);
+     transition: 0.4s;
+    }
+    header.shadow .logo{
+        color: var(--text-color);
+    
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+    }
+    .logo {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--bg-color);
+    }            
+    .logo span {
+       color: var(--second-color);     
+    }
+    .login{
+        padding: 8px 14px;
+        text-transform: uppercase;
+        font-weight: 500;
+        border-radius: 4px;
+        background: var(--second-color);
+        color: var(--bg-color);
+    }
+    .login:hover{
+        background: hsl(24, 98%, 58%);
+        transition: 0.3s;
+    }
+    /* Home */
+    .home{
+        width: 100%;
+        min-height: 440px;
+        background: var(--container-color);
+        display: grid;
+        justify-content: center;
+        align-items: center;
+    }
+    .home-text{
+        color: var(--bg-color);
+        text-align: center;
+    }
+    .home-title{
+        font-size: 3.5rem;
+    }
+    .home-subtitle{
+        font-size: 1rem;
+        font-weight: 400;
+    }
+    /* Post Filter */
+    .post-filter {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        column-gap: 1.5rem;
+        margin-top: 2rem !important;
+    }
+    .filter-item{
+        font-size: 0.9rem;
+        font-weight: 500;
+        cursor: pointer;
+    }
+    .active-filter{
+        background: var(--second-color);
+        color: var(--bg-color);
+        padding: 4px 10px;
+        border-radius: 4px;
+    }
+    /* Posts */
+    .post{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, auto));
+        justify-content: center;
+        gap: 1.5rem;
+    }
+    .post-box{
+        background: var(--bg-color);
+        box-shadow: 0 4px 14px hsl(355deg 25% 15% / 10%);
+        padding: 15px;
+        border-radius: 0.5rem;
+    }
+    .post-img{
+        width: 100;
+        height: 200px;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 0.5rem;
+    }
+    .category{
+        font-size: 0.5rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        color: var(--second-color);
+    }
+    .post-title{
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: var(--text-color);
+        display: -webkit-box;
+        /* To Remain Title In 2 Lines */
+        -webkit-line-clamp: 2;
+        -webkit-bow-orient: vertical;
+        overflow: hidden;
+    }
+    .post-date{
+        display: flex;
+        font-size: 0.875rem;
+        text-transform: uppercase;
+        font-weight: 400;
+        margin-top: 4px;
+    }
+    .post-description{
+        font-size: 0.9rem;
+        line-height: 1.5rem;
+        margin: 5px 0 10px;
+        /* To Remain Title In 3 Lines */
+        -webkit-line-clamp: 3;
+        -webkit-bow-orient: vertical;
+        overflow: hidden;
+    }
+    .profile{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .profile-img{
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        object-position: center;
+        border: 2px solid var(--second-color);
+    }
+    .profile-name{
+        font-size:0.82rem;
+        font-weight: 500;
+    }
+    .footer{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 30px 0;
+    }
+    .footer p{
+        font-size: 0.938rem;
+    }
+    .social{
+        display: flex;
+        align-items: center;
+        column-gap: 1rem;
+    }
+    .social .bx{
+        font-size: 1.4rem;
+        color: var(--text-color);
+    }
+    .social .bx:hover{
+        color: var(--second-color);
+        transition: 0.3s all linear;
+    }
+    /* Post Content */
+    .post-header{
+        width: 100;
+        height: 500px;
+        background: var(--container-color);
+    }
+    .post-container{
+        max-width: 800px;
+        margin: auto;
+        width: 100%;   
+    }
+    .header-content{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 4rem !important;
+    }
+    .back-home{
+        color: var(--second-color);
+        font-size: 0.9rem;
+    }
+    .header-title{
+        width: 90%;
+        font-size: 2.6rem;
+        color: var(--bg-color);
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+    .header-img{
+        width: 100%;
+        height: 420px;
+        object-fit: cover;
+        object-position: center;
+    }
+    .post-content{
+        margin-top: 10rem !important;
+    }
+    .sub-heading{
+        font-size: 1.2rem;
+    }
+    .post-text{
+        font-size: 1rem;
+        line-height: 1.7rem;
+        margin: 1rem 0;
+        text-align: justify;
+    }
+    /* Share */
+    .share{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 1rem;
+    }
+    .share-title{
+        font-size: 1.1rem;
+    }
+    /* Responsive */
+ @media (max-width: 1060px) {
+    .container { 
+     margin: 0 auto;
+     width: 95%;
+    }
+    .home-text{
+        width: 100%;
+    }
+ }
+ @media (max-width: 800px) {
+    .nav {
+      padding: 14px 0;
+    }
+    .post-container{
+        margin: 0 auto;
+        width: 95%;
+    }
+}  
+ @media (max-width: 768px) {
+    .nav {
+      padding: 14px 0;
+    }
+    section{
+        padding: 2rem 0; 
+    }
+    .header-content{
+        margin-top: 3rem !important;
+    }
+    .home{
+        min-height: 380;
+    }
+    .home-title{
+        font-size: 3rem;
+    }
+    .header-title{
+        font-size: 2rem;
+    }
+    .header-img{
+        height: 370px;
+    }
+    post-header {
+        height: 435px;
+    }
+    .post-content{
+        margin-top: 9rem !important;
+    }
+ }
+ @media (max-width: 570px) {
+    .post-header {
+        height: 390px;
+    }
+    .header-title{
+        width: 100%;
+    }
+    .header-img{
+        height: 340px;
+    }
+    .footer{
+        flex-direction: column;
+        row-gap: 1rem;
+        padding: 20px 0;
+        text-align: center;
+    }
+ }
+    
+    
+    </style>    
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <!-- Nav-->
+        <div class="nav container">
+        <!-- Logo -->
+        <a href="Blog.html" class="logo">INSPIRED<span>INSIGHT</span></a>
+        <!-- Login Btn -->
+        <a href="#" class="login">login</a>
+    </div>
+
+    </header>
+    <!-- Post container -->
+    <section class="post-header">
+        <div class="header-content post-container">
+            <!-- Back To home -->
+            <a href="Blog.html" class="back-home">Back To Home</a>
+            <!-- Title -->
+            <h1 class="header-title">INTRODUCTION TO CYBERSECURITY</h1>
+            <!-- Post Image -->
+            <img src="https://drive.google.com/uc?id=1UX2q-KlkO3DG8j72WKEHjCsZ10pK8gT6" alt"" class="header-img">
+        </div>
+    </section>
+    <!-- Posts -->
+    <section class="post-content post-container">
+           <h2 class="sub-heading">Cybersecurity</h2>
+           <p class="post-text">Cybersecurity refers to the practice of protecting digital systems, networks, and devices from unauthorized access, theft, and damage. With the increasing reliance on technology in all aspects of modern life, cybersecurity has become an essential aspect of protecting personal and sensitive information, financial assets, and critical infrastructure.</p>
+           <p class="post-text">Cybersecurity can be divided into several areas, including:</p>
+           <p class="post-text">1.Network Security: Network security involves protecting computer networks from unauthorized access, misuse, and damage. This can include firewalls, intrusion detection systems, and other technologies that prevent unauthorized access to the network.</p>
+           <p class="post-text">2.Application Security: Application security involves protecting software and applications from vulnerabilities and attacks. This can include using encryption, access controls, and secure coding practices to prevent unauthorized access and data breaches.</p>
+           <p class="post-text">3.Information Security: Information security involves protecting sensitive information, such as personal data, financial information, and intellectual property, from theft, loss, or damage. This can include encryption, access controls, and other measures that ensure the confidentiality and integrity of information.</p>
+           <p class="post-text">4.Disaster Recovery and Business Continuity: Disaster recovery and business continuity planning involves developing processes and systems to ensure that critical data and systems can be recovered in the event of a disaster or other disruptive event.</p>
+           <p class="post-text">5.Identity and Access Management: Identity and access management involves managing user identities and permissions to ensure that only authorized users have access to sensitive data and systems. This can include multi-factor authentication, role-based access controls, and other measures that prevent unauthorized access.</p>
+           <p class="post-text">6.Security Operations: Security operations involves monitoring networks, systems, and devices for security threats and responding to incidents in a timely and effective manner. This can include using security information and event management (SIEM) tools, security analytics, and incident response planning.</p>
+           <p class="post-text">Cybersecurity threats can come from a variety of sources, including hackers, malicious software (malware), and social engineering attacks. It is important to stay up to date with the latest threats and vulnerabilities and to implement best practices for protecting digital systems and data.</p>
+           <p class="post-text">Some best practices for cybersecurity include:
+
+            Regularly updating software and applications with the latest security patches and updates.
+            
+            Implementing strong passwords and multi-factor authentication for user accounts.
+            
+            Using encryption to protect sensitive data in transit and at rest.
+            
+            Training employees on cybersecurity best practices and how to recognize and avoid social engineering attacks.
+            
+            Conducting regular security audits and risk assessments to identify vulnerabilities and improve security.</p>
+           <p class="post-text">Overall, cybersecurity is an essential aspect of protecting digital systems and data from threats and attacks. By implementing best practices for network security, application security, information security, disaster recovery and business continuity, identity and access management, and security operations, organizations can reduce the risk of cyber attacks and protect critical assets.</p>
+    </section>
+    <!-- Share -->
+    <div class="share post-container">
+        <span class="share-title">Share this article</span>
+        <div class="social">
+            <a href="#"><i class='bx bxl-facebook'></i></a>
+            <a href="#"><i class='bx bxl-twitter'></i></a>
+            <a href="#"><i class='bx bxl-instagram'></i></a>
+            <a href="#"><i class='bx bxl-linkedin' ></i></a>  
+         </div>
+    </div>
+    <!-- Footer -->
+    <div class="footer container">
+         <p>&#169; INSPIREDINSIGHT All Right Reserved</p>
+         <div class="social">
+            <a href="#"><i class='bx bxl-facebook'></i></a>
+            <a href="#"><i class='bx bxl-twitter'></i></a>
+            <a href="#"><i class='bx bxl-instagram'></i></a>
+            <a href="#"><i class='bx bxl-linkedin' ></i></a>  
+         </div>
+    </div>

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Page</title>
+    <!--Link To CSS-->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Box Icons -->
+    <link href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet">
+    <style>
+        /*Google fonts */
+    @import url('https://fonts.googleapis.com/css2family=Poppins:wght@400;500;600;700&display=swop');
+    *{
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+      scroll-padding-top: 2rem;
+      box-sizing: border-box;
+    }
+    
+    /* Variables */
+    :root {
+        --container-color:#1a1e21;
+        --second-color:#fd8f44;
+        --text-color:#172317;
+        --bg-color:#fff;
+    }
+    a{
+      text-decoration: none;
+    }
+    li {
+      list-style: none;
+    }
+    img{
+      width: 100%;
+    }
+    section{
+        padding: 3rem 0 2rem;
+    }
+    .container{
+        max-width: 1068;
+        margin: auto;
+        width: 100%;
+    }    
+    /* Header */
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 100;
+    }
+    header.shadow {
+     background: var(--bg-color);
+     box-shadow:0 1px 4px hsl(0 4% 14% / 10%);
+     transition: 0.4s;
+    }
+    header.shadow .logo{
+        color: var(--text-color);
+    
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+    }
+    .logo {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--bg-color);
+    }            
+    .logo span {
+       color: var(--second-color);     
+    }
+    .login{
+        padding: 8px 14px;
+        text-transform: uppercase;
+        font-weight: 500;
+        border-radius: 4px;
+        background: var(--second-color);
+        color: var(--bg-color);
+    }
+    .login:hover{
+        background: hsl(24, 98%, 58%);
+        transition: 0.3s;
+    }
+    /* Home */
+    .home{
+        width: 100%;
+        min-height: 440px;
+        background: var(--container-color);
+        display: grid;
+        justify-content: center;
+        align-items: center;
+    }
+    .home-text{
+        color: var(--bg-color);
+        text-align: center;
+    }
+    .home-title{
+        font-size: 3.5rem;
+    }
+    .home-subtitle{
+        font-size: 1rem;
+        font-weight: 400;
+    }
+    /* Post Filter */
+    .post-filter {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        column-gap: 1.5rem;
+        margin-top: 2rem !important;
+    }
+    .filter-item{
+        font-size: 0.9rem;
+        font-weight: 500;
+        cursor: pointer;
+    }
+    .active-filter{
+        background: var(--second-color);
+        color: var(--bg-color);
+        padding: 4px 10px;
+        border-radius: 4px;
+    }
+    /* Posts */
+    .post{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, auto));
+        justify-content: center;
+        gap: 1.5rem;
+    }
+    .post-box{
+        background: var(--bg-color);
+        box-shadow: 0 4px 14px hsl(355deg 25% 15% / 10%);
+        padding: 15px;
+        border-radius: 0.5rem;
+    }
+    .post-img{
+        width: 100;
+        height: 200px;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 0.5rem;
+    }
+    .category{
+        font-size: 0.5rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        color: var(--second-color);
+    }
+    .post-title{
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: var(--text-color);
+        display: -webkit-box;
+        /* To Remain Title In 2 Lines */
+        -webkit-line-clamp: 2;
+        -webkit-bow-orient: vertical;
+        overflow: hidden;
+    }
+    .post-date{
+        display: flex;
+        font-size: 0.875rem;
+        text-transform: uppercase;
+        font-weight: 400;
+        margin-top: 4px;
+    }
+    .post-description{
+        font-size: 0.9rem;
+        line-height: 1.5rem;
+        margin: 5px 0 10px;
+        /* To Remain Title In 3 Lines */
+        -webkit-line-clamp: 3;
+        -webkit-bow-orient: vertical;
+        overflow: hidden;
+    }
+    .profile{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .profile-img{
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        object-position: center;
+        border: 2px solid var(--second-color);
+    }
+    .profile-name{
+        font-size:0.82rem;
+        font-weight: 500;
+    }
+    .footer{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 30px 0;
+    }
+    .footer p{
+        font-size: 0.938rem;
+    }
+    .social{
+        display: flex;
+        align-items: center;
+        column-gap: 1rem;
+    }
+    .social .bx{
+        font-size: 1.4rem;
+        color: var(--text-color);
+    }
+    .social .bx:hover{
+        color: var(--second-color);
+        transition: 0.3s all linear;
+    }
+    /* Post Content */
+    .post-header{
+        width: 100;
+        height: 500px;
+        background: var(--container-color);
+    }
+    .post-container{
+        max-width: 800px;
+        margin: auto;
+        width: 100%;   
+    }
+    .header-content{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 4rem !important;
+    }
+    .back-home{
+        color: var(--second-color);
+        font-size: 0.9rem;
+    }
+    .header-title{
+        width: 90%;
+        font-size: 2.6rem;
+        color: var(--bg-color);
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+    .header-img{
+        width: 100%;
+        height: 420px;
+        object-fit: cover;
+        object-position: center;
+    }
+    .post-content{
+        margin-top: 10rem !important;
+    }
+    .sub-heading{
+        font-size: 1.2rem;
+    }
+    .post-text{
+        font-size: 1rem;
+        line-height: 1.7rem;
+        margin: 1rem 0;
+        text-align: justify;
+    }
+    /* Share */
+    .share{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 1rem;
+    }
+    .share-title{
+        font-size: 1.1rem;
+    }
+    /* Responsive */
+ @media (max-width: 1060px) {
+    .container { 
+     margin: 0 auto;
+     width: 95%;
+    }
+    .home-text{
+        width: 100%;
+    }
+ }
+ @media (max-width: 800px) {
+    .nav {
+      padding: 14px 0;
+    }
+    .post-container{
+        margin: 0 auto;
+        width: 95%;
+    }
+}  
+ @media (max-width: 768px) {
+    .nav {
+      padding: 14px 0;
+    }
+    section{
+        padding: 2rem 0; 
+    }
+    .header-content{
+        margin-top: 3rem !important;
+    }
+    .home{
+        min-height: 380;
+    }
+    .home-title{
+        font-size: 3rem;
+    }
+    .header-title{
+        font-size: 2rem;
+    }
+    .header-img{
+        height: 370px;
+    }
+    post-header {
+        height: 435px;
+    }
+    .post-content{
+        margin-top: 9rem !important;
+    }
+ }
+ @media (max-width: 570px) {
+    .post-header {
+        height: 390px;
+    }
+    .header-title{
+        width: 100%;
+    }
+    .header-img{
+        height: 340px;
+    }
+    .footer{
+        flex-direction: column;
+        row-gap: 1rem;
+        padding: 20px 0;
+        text-align: center;
+    }
+ }
+    
+    
+    </style>    
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <!-- Nav-->
+        <div class="nav container">
+        <!-- Logo -->
+        <a href="Blog.html" class="logo">INSPIRED<span>INSIGHT</span></a>
+        <!-- Login Btn -->
+        <a href="#" class="login">login</a>
+    </div>
+
+    </header>
+    <!-- Post container -->
+    <section class="post-header">
+        <div class="header-content post-container">
+            <!-- Back To home -->
+            <a href="Blog.html" class="back-home">Back To Home</a>
+            <!-- Title -->
+            <h1 class="header-title">DESIGN THINKING</h1>
+            <!-- Post Image -->
+            <img src="https://drive.google.com/uc?id=1WHn-HGs5uH-G8puIbBds4lrCXhbYqCEI" alt"" class="header-img">
+        </div>
+    </section>
+    <!-- Posts -->
+    <section class="post-content post-container">
+           <h2 class="sub-heading">Design Thinking</h2>
+           <p class="post-text">Design thinking is a problem-solving approach that involves empathizing with users, defining the problem, ideating potential solutions, prototyping, and testing. It is a creative and iterative process that puts the user at the center of the design process, with the aim of creating solutions that meet their needs.</p>
+           <p class="post-text">Design thinking involves the following phases:
+
+            Empathize: In this phase, designers seek to understand the user's needs and perspectives. This can involve conducting user research, such as interviews, surveys, and observations, to gain insights into the user's experiences and challenges.
+            
+            Define: In this phase, designers define the problem they are trying to solve. This can involve analyzing the user research to identify patterns and insights, and distilling these into a clear problem statement.
+            
+            Ideate: In this phase, designers generate a range of potential solutions to the problem. This can involve brainstorming, sketching, and creating concept maps, to explore different possibilities and generate ideas.
+            
+            Prototype: In this phase, designers create a tangible representation of the solution, such as a mockup or prototype. This can involve creating low-fidelity prototypes using paper or digital tools, or high-fidelity prototypes using more advanced tools such as 3D printing or virtual reality.
+            
+            Test: In this phase, designers test the prototype with users, to gather feedback and refine the solution. This can involve conducting usability tests, focus groups, or surveys, to evaluate the effectiveness of the solution and identify areas for improvement.</p>
+           <p class="post-text">Design thinking can be used in a range of contexts, from product development to business strategy. It is a flexible and adaptable approach that encourages creativity, collaboration, and iteration, and can help organizations to innovate and solve complex problems.</p>
+           <p class="post-text">One of the key principles of design thinking is a user-centered approach, which involves understanding the needs and perspectives of the user throughout the design process. This can help designers to create solutions that are effective, efficient, and engaging, and that meet the needs of the user.</p>
+           <p class="post-text">Another key principle of design thinking is a willingness to experiment and iterate. Design thinking is an iterative process, which means that designers must be willing to test and refine their solutions based on feedback from users. This can involve trying out different ideas, taking risks, and learning from failures.</p>
+           <p class="post-text">Overall, design thinking is a powerful tool for innovation and problem-solving, which can help organizations to create products, services, and experiences that are tailored to the needs of their users. By putting the user at the center of the design process, and by embracing experimentation and iteration, designers can create solutions that are both effective and engaging.</p>
+    </section>
+    <!-- Share -->
+    <div class="share post-container">
+        <span class="share-title">Share this article</span>
+        <div class="social">
+            <a href="#"><i class='bx bxl-facebook'></i></a>
+            <a href="#"><i class='bx bxl-twitter'></i></a>
+            <a href="#"><i class='bx bxl-instagram'></i></a>
+            <a href="#"><i class='bx bxl-linkedin' ></i></a>  
+         </div>
+    </div>
+    <!-- Footer -->
+    <div class="footer container">
+         <p>&#169; INSPIREDINSIGHT All Right Reserved</p>
+         <div class="social">
+            <a href="#"><i class='bx bxl-facebook'></i></a>
+            <a href="#"><i class='bx bxl-twitter'></i></a>
+            <a href="#"><i class='bx bxl-instagram'></i></a>
+            <a href="#"><i class='bx bxl-linkedin' ></i></a>  
+         </div>
+    </div>
