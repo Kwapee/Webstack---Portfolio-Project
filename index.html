@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Blog Website</title>
+    <!--Link To CSS-->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Box Icons -->
+    <link href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet">
+     <!-- JQuery Link -->
+<script  src="https://code.jquery.com/jquery-3.6.3.js"></script>  
+<script> 
+    // Filter Js
+    $(document).ready(function () {
+      $(".filter-item").click(function () {
+        const value = $(this).attr("data-filter");
+        if (value == "all") {
+          $(".post-box").show("1000");
+        } else {
+          $(".post-box")
+            .not("." + value)
+            .hide("1000");
+          $(".post-box")
+            .filter("." + value)
+            .show("1000");
+        }
+      });
+      // Add active to btn
+      $(".filter-item").click(function () {
+        $(this).addClass("active-filter").siblings().removeClass("active-filter");
+      });  
+    });
+    // Header Background Change On Scroll
+    let header = document.querySelector("header");
+
+    window.addEventlistener("scroll", () => {
+        header.classlist.toggle("shadow", window.scrollY > 0);
+    });
+</script>   
+<style>
+    /*Google fonts */
+@import url('https://fonts.googleapis.com/css2family=Poppins:wght@400;500;600;700&display=swop');
+*{
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+  scroll-padding-top: 2rem;
+  box-sizing: border-box;
+}
+
+/* Variables */
+:root {
+    --container-color:#1a1e21;
+    --second-color:#fd8f44;
+    --text-color:#172317;
+    --bg-color:#fff;
+}
+a{
+  text-decoration: none;
+}
+li {
+  list-style: none;
+}
+img{
+  width: 100%;
+}
+section{
+    padding: 3rem 0 2rem;
+}
+.container{
+    max-width: 1068;
+    margin: auto;
+    width: 100%;
+}    
+/* Header */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+header.shadow {
+ background: var(--bg-color);
+ box-shadow:0 1px 4px hsl(0 4% 14% / 10%);
+ transition: 0.4s;
+}
+header.shadow .logo{
+    color: var(--text-color);
+
+}
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 0;
+}
+.logo {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--bg-color);
+}            
+.logo span {
+   color: var(--second-color);     
+}
+.login{
+    padding: 8px 14px;
+    text-transform: uppercase;
+    font-weight: 500;
+    border-radius: 4px;
+    background: var(--second-color);
+    color: var(--bg-color);
+}
+.login:hover{
+    background: hsl(24, 98%, 58%);
+    transition: 0.3s;
+}
+/* Home */
+.home{
+    width: 100%;
+    min-height: 440px;
+    background: var(--container-color);
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+.home-text{
+    color: var(--bg-color);
+    text-align: center;
+}
+.home-title{
+    font-size: 3.5rem;
+}
+.home-subtitle{
+    font-size: 1rem;
+    font-weight: 400;
+}
+/* Post Filter */
+.post-filter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 1.5rem;
+    margin-top: 2rem !important;
+}
+.filter-item{
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+.active-filter{
+    background: var(--second-color);
+    color: var(--bg-color);
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+/* Posts */
+.post{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, auto));
+    justify-content: center;
+    gap: 1.5rem;
+}
+.post-box{
+    background: var(--bg-color);
+    box-shadow: 0 4px 14px hsl(355deg 25% 15% / 10%);
+    padding: 15px;
+    border-radius: 0.5rem;
+}
+.post-img{
+    width: 100;
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 0.5rem;
+}
+.category{
+    font-size: 0.5rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: var(--second-color);
+}
+.post-title{
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-color);
+    display: -webkit-box;
+    /* To Remain Title In 2 Lines */
+    -webkit-line-clamp: 2;
+    -webkit-bow-orient: vertical;
+    overflow: hidden;
+}
+.post-date{
+    display: flex;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    font-weight: 400;
+    margin-top: 4px;
+}
+.post-description{
+    font-size: 0.9rem;
+    line-height: 1.5rem;
+    margin: 5px 0 10px;
+    /* To Remain Title In 3 Lines */
+    -webkit-line-clamp: 3;
+    -webkit-bow-orient: vertical;
+    overflow: hidden;
+}
+.profile{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.profile-img{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-position: center;
+    border: 2px solid var(--second-color);
+}
+.profile-name{
+    font-size:0.82rem;
+    font-weight: 500;
+}
+.footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 0;
+}
+.footer p{
+    font-size: 0.938rem;
+}
+.social{
+    display: flex;
+    align-items: center;
+    column-gap: 1rem;
+}
+.social .bx{
+    font-size: 1.4rem;
+    color: var(--text-color);
+}
+.social .bx:hover{
+    color: var(--second-color);
+    transition: 0.3s all linear;
+}
+/* Responsive */
+ @media (max-width: 1060px) {
+    .container { 
+     margin: 0 auto;
+     width: 95%;
+    }
+    .home-text{
+        width: 100%;
+    }
+ }
+ @media (max-width: 800px) {
+    .nav {
+      padding: 14px 0;
+    }
+    .post-container{
+        margin: 0 auto;
+        width: 95%;
+    }
+}  
+ @media (max-width: 768px) {
+    .nav {
+      padding: 14px 0;
+    }
+    section{
+        padding: 2rem 0; 
+    }
+    .header-content{
+        margin-top: 3rem !important;
+    }
+    .home{
+        min-height: 380;
+    }
+    .home-title{
+        font-size: 3rem;
+    }
+    .header-title{
+        font-size: 2rem;
+    }
+    .header-img{
+        height: 370px;
+    }
+    post-header {
+        height: 435px;
+    }
+    .post-content{
+        margin-top: 9rem !important;
+    }
+ }
+ @media (max-width: 570px) {
+    .post-header {
+        height: 390px;
+    }
+    .header-title{
+        width: 100%;
+    }
+    .header-img{
+        height: 340px;
+    }
+    .footer{
+        flex-direction: column;
+        row-gap: 1rem;
+        padding: 20px 0;
+        text-align: center;
+    }
+ }
+
+
+</style>    
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <!-- Nav-->
+        <div class="nav container">
+        <!-- Logo -->
+        <a href="#" class="logo">INSPIRED<span>INSIGHT</span></a>
+        <!-- Lobin Btn-->
+        <a href="login.html" class="login">login</a>
+    </div>
+
+    </header>
+    <!-- Home -->
+    <section class="home" id="home">
+        <div class="home-text container">
+            <h2 class="home-title">THE INSPIRED INSIGHT BlOG</h2>
+            <span class="home-subtitle">Your source of great contents </span>
+        </div>
+    </section>
+    <!-- Post Filter-->
+    <div class="post-filter container">
+        <span class="filter-item active-filter" data-filter='all'>All</span>
+        <span class="filter-item" data-filter='design'>Design</span>
+        <span class="filter-item" data-filter='tech'>Tech</span>
+        <span class="filter-item" data-filter='mobile'>Mobile</span>
+    </div>
+    <!-- Posts -->
+    <section class="post container">
+        <!-- Post Box 1 -->
+        <div class="post-box mobile">
+           <img src="https://drive.google.com/uc?id=1pWDHZNZwT0R2GZRgMfsghG4fO1tgDG5k" alt="" class="post-img">
+           <h2 class="category">Mobile</h2>
+           <a href="post.page.html" class="post-title">
+               MOBILE OPERATING SYSTEM
+           </a>
+           <span class="post-date">16 Mar 2023</span>
+           <p class="post-decription">A mobile operating system (OS) is the software that runs on a mobile device such as a smartphone or tablet. It is responsible for managing the device's hardware and software resources, providing a user interface for users to interact with the device, and running applications. There are several mobile operating systems available, including Android, iOS, and Windows.</p>
+           <!-- Profile -->
+           <div class="profile">
+               <img src="https://drive.google.com/uc?id=15KDHxXtlSsfadOvH3kaQc0qgZa8wIWYz" alt="" class="profile-img">
+               <span class="profile-name">Inspiredinsight</span>
+            </div>
+        </div>       
+        <!-- Post Box 2 -->
+        <div class="post-box tech">
+            <img src="https://drive.google.com/uc?id=1Fc9dMtl8aNUSDLmZbohwoEEAalf9SwsO" alt="" class="post-img">
+            <h2 class="category">Tech</h2>
+            <a href="post.page2.html" class="post-title">
+                 BLOCKCHAIN
+            </a>
+            <span class="post-date">16 Jan 2023</span>
+            <p class="post-decription">Blockchain is a decentralized, digital ledger technology that enables secure and transparent transactions. It is essentially a database of records, or blocks, that are linked together using cryptography to form a chain. Each block contains a unique code, or hash, and information about a transaction, such as the sender, recipient, and timestamp.</p>
+            <!-- Profile -->
+            <div class="profile">
+                <img src="https://drive.google.com/uc?id=19QmoXD9ySyQmB_J_kMs6ILiT3XboLzS4" alt="" class="profile-img">
+                <span class="profile-name">Inspiredinsight</span>
+            </div>
+        </div>            
+        <!-- Post Box 3 -->
+        <div class="post-box mobile">
+            <img src="https://drive.google.com/uc?id=1WGVkpNZoSFlV9t5evqHZt9SnfADEU3Uj" alt="" class="post-img">
+            <h2 class="category">Mobile</h2>
+            <a href="post.page3.html" class="post-title">
+                MOBILE APPLICATIONS
+            </a>
+            <span class="post-date">29 Feb 2021</span>
+            <p class="post-decription">Mobile applications, or apps, are software programs that are designed to run on mobile devices such as smartphones and tablets. They are developed for different operating systems such as Android, iOS, and Windows. Mobile apps can be downloaded from app stores, such as Google Play and the Apple App Store.</p>
+            <!-- Profile -->
+            <div class="profile">
+                <img src="https://drive.google.com/uc?id=15KDHxXtlSsfadOvH3kaQc0qgZa8wIWYz" alt="" class="profile-img">
+                <span class="profile-name">Inspiredinsight</span>
+            </div>   
+        </div>
+        <!-- Post Box 4 -->
+        <div class="post-box">
+            <img src="https://drive.google.com/uc?id=1WHn-HGs5uH-G8puIbBds4lrCXhbYqCEI" alt="" class="post-img">
+            <h2 class="category">Design</h2>
+            <a href="post.page4.html" class="post-title">
+                DESIGN THINKING
+            </a>
+            <span class="post-date">16 Jan 2023</span>
+            <p class="post-decription">Design thinking is a problem-solving approach that involves empathizing with users, defining the problem, ideating potential solutions, prototyping, and testing. It is a creative and iterative process that puts the user at the center of the design process, with the aim of creating solutions that meet their needs.</p>
+            <!-- Profile -->
+            <div class="profile">
+                <img src="https://drive.google.com/uc?id=1PK2_El4_oW5RPQExXwCpJEwA-MRYwBaa" alt="" class="profile-img">
+                <span class="profile-name">Inspiredinsight</span>
+             </div>
+         </div>       
+         <!-- Post Box 5 -->
+         <div class="post-box tech">
+             <img src="https://drive.google.com/uc?id=1UX2q-KlkO3DG8j72WKEHjCsZ10pK8gT6" alt="" class="post-img">
+             <h2 class="category">Tech</h2>
+             <a href="post.page5.html" class="post-title">
+                 CYBERSECURITY
+             </a>
+             <span class="post-date">14 Jan 2023</span>
+             <p class="post-decription">Cybersecurity refers to the practice of protecting digital systems, networks, and devices from unauthorized access, theft, and damage. With the increasing reliance on technology in all aspects of modern life, cybersecurity has become an essential aspect of protecting personal and sensitive information, financial assets, and critical infrastructure.</p>
+             <!-- Profile -->
+             <div class="profile">
+                 <img src="https://drive.google.com/uc?id=19QmoXD9ySyQmB_J_kMs6ILiT3XboLzS4" alt="" class="profile-img">
+                 <span class="profile-name">Inspiredinsight</span>
+             </div>
+         </div>            
+         <!-- Post Box 7 -->
+        <div class="post-box design">
+            <img src="https://drive.google.com/uc?id=1wbFj_4j3fqJV48X6IhbyKHjbPrfRE_nU" alt="" class="post-img">
+            <h2 class="category">Design</h2>
+            <a href="post.page7.html" class="post-title">
+                BRANDING
+            </a>
+            <span class="post-date">16 Jan 2023</span>
+            <p class="post-decription">Branding refers to the process of creating a unique identity and image for a company or product in the minds of consumers. It involves the use of various marketing and advertising strategies to establish a strong and recognizable brand identity that differentiates a company from its competitors.</p>
+            <!-- Profile -->
+            <div class="profile">
+                <img src="https://drive.google.com/uc?id=1PK2_El4_oW5RPQExXwCpJEwA-MRYwBaa" alt="" class="profile-img">
+                <span class="profile-name">Inspiredinsight</span>
+             </div>
+         </div>       
+         <!-- Post Box 8 -->
+         <div class="post-box tech">
+             <img src="https://drive.google.com/uc?id=1WrvoKtHudKAvI2FrealRpu4NTNA-xLYt" alt="" class="post-img">
+             <h2 class="category">Tech</h2>
+             <a href="post.page8.html" class="post-title">
+                 CLOUD COMPUTING
+             </a>
+             <span class="post-date">16 Jun 2022</span>
+             <p class="post-decription">Cloud computing refers to the delivery of computing services over the internet, including servers, storage, databases, software, and other resources. Cloud computing enables organizations to access and use computing resources on an as-needed basis, without having to invest in and maintain their own computing infrastructure.</p>
+             <!-- Profile -->
+             <div class="profile">
+                 <img src="https://drive.google.com/uc?id=19QmoXD9ySyQmB_J_kMs6ILiT3XboLzS4" alt="" class="profile-img">
+                 <span class="profile-name">Inspiredinsight</span>
+             </div>
+         </div>            
+         <!-- Post Box 9 -->
+         <div class="post-box design">
+             <img src="https://drive.google.com/uc?id=1tBPdsPfo8EUqag7OMOTrnVZuRF3EdDd8" alt="" class="post-img">
+             <h2 class="category">Design</h2>
+             <a href="post.page9.html" class="post-title">
+                 GRAPHIC DESIGN
+             </a>
+             <span class="post-date">16 Jan 2023</span>
+             <p class="post-decription">Graphic design is the art and practice of creating visual content to communicate ideas and messages to a specific audience. It involves the use of typography, images, color, and layout to create visually appealing and effective designs for a variety of mediums, including print, digital, and multimedia.</p>
+             <!-- Profile -->
+             <div class="profile">
+                 <img src="https://drive.google.com/uc?id=1PK2_El4_oW5RPQExXwCpJEwA-MRYwBaa" alt="" class="profile-img">
+                 <span class="profile-name">Inspiredinsight</span>
+             </div>   
+         </div>   
+    </section>
+    <!-- Footer -->
+    <div class="footer container">
+         <p>&#169; INSPIREDINSIGHT All Right Reserved</p>
+         <div class="social">
+            <a href="#"><i class='bx bxl-facebook'></i></a>
+            <a href="#"><i class='bx bxl-twitter'></i></a>
+            <a href="#"><i class='bx bxl-instagram'></i></a>
+            <a href="#"><i class='bx bxl-linkedin' ></i></a>  
+         </div>
+    </div>
+
+<!-- JQuery Link -->
+<script  src="https://code.jquery.com/jquery-3.6.3.js"
+  integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+  crossorigin="anonymous"></script>
+
+<!-- link To JS-->
+<script src="main.js"></script>
+
+
+
+
+    
+
+</body>
+</html>    
